@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var detail = require('./routes/detail');
+var action = require('./routes/action');
+var data = require('./routes/data');
 
 var app = express();
 
@@ -26,6 +28,16 @@ app.use(
 );
 // 加载用于解析 cookie 的中间件
 app.use(cookieParser());
+
+//cors解决跨域问题
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Credentials', true);
+
+  next();
+});
 //将静态文件导入到路由中 '/static'是虚拟路径 将静态文件挂载在static虚拟目录下
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
@@ -33,6 +45,8 @@ app.use('/', index);
 //只要含有/users的都会进入该中间件 模块化
 app.use('/users', users);
 app.use('/detail', detail);
+app.use('/action', action);
+app.use('/data', data);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
