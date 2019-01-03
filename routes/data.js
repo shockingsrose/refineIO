@@ -32,4 +32,15 @@ router.post('/pay', (req, res, err) => {
   });
 });
 
+router.post('getLogisticsInfo', (req, res, err) => {
+  if (err) res.send(err);
+  else {
+    res.send(res);
+  }
+});
+
+router.post('getUserId', (req, res, next) => {
+  res.send(req.body);
+});
+
 module.exports = router;
