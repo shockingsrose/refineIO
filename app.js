@@ -30,8 +30,8 @@ app.use(
 app.use(cookieParser());
 
 //cors解决跨域问题
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8000');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, token, token1');
   res.header('Access-Control-Allow-Credentials', true);
@@ -39,6 +39,7 @@ app.use(function(req, res, next) {
 });
 //将静态文件导入到路由中 '/static'是虚拟路径 将静态文件挂载在static虚拟目录下
 app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'html')));
 
 app.use('/', index);
 //只要含有/users的都会进入该中间件 模块化
@@ -48,7 +49,7 @@ app.use('/action', action);
 app.use('/data', data);
 
 // error handler 错误处理器 拥有四个参数
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -59,13 +60,13 @@ app.use(function(err, req, res, next) {
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-var server = app.listen(3000, function() {
+var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
 
