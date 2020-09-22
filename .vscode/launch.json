@@ -9,7 +9,10 @@
       "request": "launch",
       "name": "run app.js",
       "runtimeExecutable": "",
-      "runtimeArgs": ["--nolazy", "--harmony"],
+      "runtimeArgs": [
+        "--nolazy",
+        "--harmony"
+      ],
       //   "port": 3000,
       "program": "${workspaceRoot}/app.js",
       "cwd": "${workspaceRoot}",
@@ -22,6 +25,12 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceRoot}/utils/flatten.js"
+    },
+    {
+      "name": "publish",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/bin/publish.js"
     }
   ]
 }
